@@ -13,10 +13,10 @@ import routes from './routes/user.routes';
     res.send('Esta Funcionando 😉👌')
   })
 
-  app.post('/users', routes)
+  app.use('/users', routes)
 
   app.listen(38000, () => {
-    console.log("Iniciando na porta https://localhost:38000");
+    console.log("Iniciando na porta http://localhost:38000");
     conectedDatabase.initialize().then(() => console.log("Banco iniciado"))
   });
 

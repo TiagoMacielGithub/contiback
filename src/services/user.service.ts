@@ -1,3 +1,5 @@
+
+import { Console } from "winston/lib/winston/transports";
 import userRepository from "../models/DBConect";
 import { User } from "../models/User";
 import { v4 } from "uuid"
@@ -14,4 +16,22 @@ export default class UserService {
       newUser.tel_emg_user = tel_emg_user;
       await userRepository.save(newUser);
   }
+  async loginUser(email_user: string, senha_user: string){
+    try {
+    const foundUser = userRepository.findOne({
+        select: {
+            id_user: true,
+        },
+        where: {
+            email_user: email_user,
+            senha_user: senha_user,
+        },
+    })
+    return foundUser;
+    } 
+    catch (err) {
+      return console.log("Deu ruim")
+    }
+
+}
 }
